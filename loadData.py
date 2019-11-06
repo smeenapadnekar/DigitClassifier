@@ -7,7 +7,7 @@ import cv2
 
 trainFolder = 'data/train/'
 testFolder  = 'data/test'
-resize_size = (64,64)
+resize_size = (32,32)
 
 def collapse_col(row):
     global resize_size
@@ -79,8 +79,8 @@ def construct_all_data(img_folder,mat_file_name,h5_name):
     df1 = img_bbox_data_grouped.merge(img_data,on='img_name',how='left')
     print('grouping done')
     #df1.to_csv(os.path.join(img_folder,csv_name), index = False)
-    df1.to_hdf(os.path.join(img_folder,h5_name),'table')
+    df1.to_csv(os.path.join(img_folder,h5_name),',')
 
-construct_all_data(testFolder,'digitStruct.mat','test_data_processed.h5')
-construct_all_data(trainFolder,'digitStruct.mat','train_data_processed.h5')
+#construct_all_data(testFolder,'digitStruct.mat','test_data_processed.csv')
+construct_all_data(trainFolder,'digitStruct.mat','train_data_processed.csv')
 #construct_all_data(extra_folder,'digitStruct.mat','extra_data_processed.h5') #takes a long time
